@@ -78,6 +78,10 @@ export class CalculatorComponent implements OnInit {
   calc(): void {
     if (this.numB == 'null') return
     this.res = this.calculatorService.calc(parseFloat(this.numA), parseFloat(this.numB), this.key).toString()
+
+    this.numA = this.res
+    this.numB = 'null'
+    this.key = 'null'
   }
 
   get display(): string {
