@@ -7,10 +7,10 @@ import { CalculatorService } from '../services';
   styleUrls: ['./calculator.component.css']
 })
 export class CalculatorComponent implements OnInit {
-  private numA: string
-  private numB: string
-  private res: number
-  private key: string
+  private numA!: string
+  private numB!: string
+  private res!: string
+  private key!: string
 
   constructor(private calculatorService: CalculatorService) { }
 
@@ -23,9 +23,9 @@ export class CalculatorComponent implements OnInit {
   */
   clean(): void {
     this.numA = '0'
-    this.numB = null
-    this.res = null
-    this.key = null
+    this.numB = 'null'
+    this.res = 'null'
+    this.key = 'null'
   }
 
 
@@ -38,11 +38,11 @@ export class CalculatorComponent implements OnInit {
    */
   numbersConcantenation(currentNumber: string, nextNumber: string): string {
     // if current number equals zero or null, the value is reinitialized
-    if (currentNumber === '0' || currentNumber === null) nextNumber = ' '
+    if (currentNumber === '0' || currentNumber == 'null') currentNumber = ''
     // if first digit is a dot, concatenates zero before the dot
     if (nextNumber === '.' && currentNumber === ' ') return '0.'
     // if a dot is inserted and it already has one, it just returns the current number
-    if (nextNumber == '.' && currentNumber.indexOf('.') > -1) return currentNumber
+    if (nextNumber === '.' && currentNumber.indexOf('.') > -1) return currentNumber
     return currentNumber + nextNumber
   }
 
@@ -52,21 +52,21 @@ export class CalculatorComponent implements OnInit {
    * @returns void
    */
   addNumber(num: string): void {
-    if (this.key == null) this.numA = this.numbersConcantenation(this.numA, num)
+    if (this.key == 'null') this.numA = this.numbersConcantenation(this.numA, num)
     else this.numB = this.numbersConcantenation(this.numB, num)
   }
 
   defineOperation(key: string): void {
-    if (this.key === null) {
+    if (this.key == 'null') {
       this.key = key
       return
     }
-    if (this.numB !== null) {
-      this.res = this.calculatorService.calc(parseFloat(this.numA), parseFloat(this.numB), this.key)
+    if (this.numB != 'null') {
+      this.res = this.calculatorService.calc(parseFloat(this.numA), parseFloat(this.numB), this.key).toString()
       this.key = key
       this.numA = this.res.toString()
-      this.numB = null
-      this.res = null
+      this.numB = 'null'
+      this.res = 'null'
     }
   }
 
@@ -76,13 +76,13 @@ export class CalculatorComponent implements OnInit {
    * @returns void
    */
   calc(): void {
-    if (this.numB === null) return
-    this.res = this.calculatorService.calc(parseFloat(this.numA), parseFloat(this.numB), this.key)
+    if (this.numB == 'null') return
+    this.res = this.calculatorService.calc(parseFloat(this.numA), parseFloat(this.numB), this.key).toString()
   }
 
-  getDisplay(): string{
-    if (this.res !== null) return this.res.toString()
-    if (this.numB !== null) return this.numB.toString()
+  get display(): string {
+    if (this.res != 'null') return this.res.toString()
+    if (this.numB != 'null') return this.numB.toString()
     return this.numA.toString()
   }
 
