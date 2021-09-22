@@ -42,6 +42,6 @@ describe('CalculatorComponent', () => {
     btnCalc.triggerEventHandler('click', null);
     fixture.detectChanges();
 
-    expect(display.nativeElement.value.toEqual('20'));
+    expect(display.nativeElement.value).toEqual('');
   });
 });
