@@ -17,6 +17,9 @@ export class CalculatorService {
   static readonly SUB: string = '-'
   static readonly DIV: string = '/'
   static readonly MUL: string = '*'
+  static readonly SQR: string = 'sqrt'
+  static readonly PW2: string = 'pwtwo'
+  static readonly PW3: string = 'pwthree'
 
   constructor() { }
   /**
@@ -45,6 +48,18 @@ export class CalculatorService {
 
       case CalculatorService.MUL:
         res = numA * numB;
+        break;
+
+      case CalculatorService.SQR:
+        res = Math.sqrt(numA);
+        break;
+
+      case CalculatorService.PW2:
+        res = Math.pow(numA, 2);
+        break;
+
+      case CalculatorService.PW3:
+        res = Math.pow(numA, 3);
         break;
 
       default:

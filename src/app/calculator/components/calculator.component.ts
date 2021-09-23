@@ -76,6 +76,24 @@ export class CalculatorComponent implements OnInit {
    * @returns void
    */
   calc(): void {
+    if (this.numB == 'null' && this.key == 'sqrt') {
+      this.res = Math.sqrt(parseFloat(this.numA)).toString()
+      this.numA = this.res
+      this.numB = 'null'
+      this.key = 'null'
+    }
+    if (this.numB == 'null' && this.key == 'pwtwo') {
+      this.res = Math.pow(parseFloat(this.numA), 2).toString()
+      this.numA = this.res
+      this.numB = 'null'
+      this.key = 'null'
+    }
+    if (this.numB == 'null' && this.key == 'pwthree') {
+      this.res = Math.pow(parseFloat(this.numA), 3).toString()
+      this.numA = this.res
+      this.numB = 'null'
+      this.key = 'null'
+    }
     if (this.numB == 'null') return
     this.res = this.calculatorService.calc(parseFloat(this.numA), parseFloat(this.numB), this.key).toString()
 
